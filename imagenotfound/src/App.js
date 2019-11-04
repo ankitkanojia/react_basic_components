@@ -1,12 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ImageVerification from './ImageVerification';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <ImageVerification src="logo.svg"  alt="logo" className="App-logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -22,5 +22,7 @@ function App() {
     </div>
   );
 }
+
+
 
 export default App;
