@@ -8,7 +8,8 @@ class Header extends Component {
             <React.Fragment>
                 <header>
                     <ul>
-                        <li className={this.props.location.pathname === "/" ? "active" : ""}><Link to="/">Home - Redux Demo</Link></li>
+                        <li className={this.props.location.pathname === "/" ? "active" : ""}><Link to="/">Home</Link></li>
+                        <li className={this.props.location.pathname === "/" ? "active" : ""}><Link to="/imageverification">Image Verification</Link></li>
                     </ul>
                 </header>
             </React.Fragment>
