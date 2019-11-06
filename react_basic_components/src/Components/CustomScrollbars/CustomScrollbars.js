@@ -1,6 +1,5 @@
 import React , { Component } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
-import './CustomScrollbars.css';
 
 export default class CustomScrollbars extends Component {
     constructor(props, ...rest) {

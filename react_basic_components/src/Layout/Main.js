@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from '../Pages/Home';
-import ImageVerification from '../Pages/ImageVerification';5
+import ImageVerification from '../Pages/ImageVerification';
 import Scrollbar from '../Pages/Scrollbar';
 
 const Main = () => (
