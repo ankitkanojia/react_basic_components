@@ -21,6 +21,9 @@ class Header extends Component {
                                 <li className={"nav-item" + (this.props.location.pathname === "/imageverification" ? " active" : "")}>
                                     <Link className="nav-link" to="/imageverification">Image Verification</Link>
                                 </li>
+                                <li className={"nav-item" + (this.props.location.pathname === "/scrollbar" ? " active" : "")}>
+                                    <Link className="nav-link" to="/scrollbar">Scrollbar</Link>
+                                </li>
                             </ul>
                         </div>
                     </nav>
