@@ -24,6 +24,9 @@ class Header extends Component {
                                 <li className={"nav-item" + (this.props.location.pathname === "/scrollbar" ? " active" : "")}>
                                     <Link className="nav-link" to="/scrollbar">Scrollbar</Link>
                                 </li>
+                                <li className={"nav-item" + (this.props.location.pathname === "/charts" ? " active" : "")}>
+                                    <Link className="nav-link" to="/charts">Charts</Link>
+                                </li>
                             </ul>
                         </div>
                     </nav>
