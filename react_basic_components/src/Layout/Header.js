@@ -27,6 +27,9 @@ class Header extends Component {
                                 <li className={"nav-item" + (this.props.location.pathname === "/charts" ? " active" : "")}>
                                     <Link className="nav-link" to="/charts">Charts</Link>
                                 </li>
+                                <li className={"nav-item" + (this.props.location.pathname === "/pagination" ? " active" : "")}>
+                                    <Link className="nav-link" to="/pagination">Pagination</Link>
+                                </li>
                             </ul>
                         </div>
                     </nav>
