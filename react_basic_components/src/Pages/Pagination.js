@@ -1,35 +1,50 @@
 import React, { Component } from 'react';
-import PaginationComponent from "react-js-pagination";
-import 'bootstrap-less/bootstrap/bootstrap.less';
+import PaginationComponent from "./../Components/Pagination/Pagination";
 
-class Pagination extends Component {
+class Pagination extends React.Component {
+    constructor() {
+        super();
 
-    constructor(props) {
-        super(props);
+        // an example array of items to be paged
+        var exampleItems = [...Array(150).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
+
         this.state = {
-            activePage: 15
+            exampleItems: exampleItems,
+            pageOfItems: []
         };
+
+        // bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
+        this.onChangePage = this.onChangePage.bind(this);
     }
 
-    handlePageChange(pageNumber) {
-        console.log(`active page is ${pageNumber}`);
-        this.setState({ activePage: pageNumber });
+    onChangePage(pageOfItems) {
+        // update state with new page of items
+        this.setState({ pageOfItems: pageOfItems });
     }
 
     render() {
         return (
-            <React.Fragment>
-                <div>
-                    <PaginationComponent
-                        activePage={this.state.activePage}
-                        itemsCountPerPage={10}
-                        totalItemsCount={450}
-                        pageRangeDisplayed={5}
-                        onChange={this.handlePageChange.bind(this)}
-                    />
+            <div>
+                <div className="container">
+                    <div className="text-center">
+                        <h1>React - Pagination Example with logic like Google</h1>
+                        {this.state.pageOfItems.map(item =>
+                            <div key={item.id}>{item.name}</div>
+                        )}
+                        <PaginationComponent items={this.state.exampleItems} onChangePage={this.onChangePage} />
+                    </div>
                 </div>
-            </React.Fragment>
-        )
+                <hr />
+                <div className="credits text-center">
+                    <p>
+                        <a href="http://jasonwatmore.com/post/2017/03/14/react-pagination-example-with-logic-like-google" target="_top">React - Pagination Example with Logic like Google</a>
+                    </p>
+                    <p>
+                        <a href="http://jasonwatmore.com" target="_top">JasonWatmore.com</a>
+                    </p>
+                </div>
+            </div>
+        );
     }
 }
 
