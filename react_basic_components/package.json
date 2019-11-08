@@ -5,14 +5,17 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "bootstrap-less": "^3.3.8",
+    "classnames": "^2.2.6",
     "fusioncharts": "^3.14.1",
+    "paginator": "^1.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.11.0",
     "react-fusioncharts": "^3.0.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "react-syntax-highlighter": "^5.7.0"
   },
   "scripts": {
     "start": "react-scripts start",

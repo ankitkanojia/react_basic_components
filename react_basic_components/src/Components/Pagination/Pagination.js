@@ -1,142 +1,204 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import paginator from "paginator";
+import Page from "./Page";
+import cx from "classnames";
 
-const propTypes = {
-    items: PropTypes.array.isRequired,
-    onChangePage: PropTypes.func.isRequired,
-    initialPage: PropTypes.number,
-    pageSize: PropTypes.number
+export default class Pagination extends React.Component {
+  static propTypes = {
+    totalItemsCount: PropTypes.number.isRequired,
+    onChange: PropTypes.func.isRequired,
+    activePage: PropTypes.number,
+    itemsCountPerPage: PropTypes.number,
+    pageRangeDisplayed: PropTypes.number,
+    prevPageText: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    nextPageText: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    lastPageText: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    firstPageText: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    disabledClass: PropTypes.string,
+    hideDisabled: PropTypes.bool,
+    hideNavigation: PropTypes.bool,
+    innerClass: PropTypes.string,
+    itemClass: PropTypes.string,
+    itemClassFirst: PropTypes.string,
+    itemClassPrev: PropTypes.string,
+    itemClassNext: PropTypes.string,
+    itemClassLast: PropTypes.string,
+    linkClass: PropTypes.string,
+    activeClass: PropTypes.string,
+    activeLinkClass: PropTypes.string,
+    linkClassFirst: PropTypes.string,
+    linkClassPrev: PropTypes.string,
+    linkClassNext: PropTypes.string,
+    linkClassLast: PropTypes.string,
+    hideFirstLastPages: PropTypes.bool,
+    getPageUrl: PropTypes.func
+  };
+
+  static defaultProps = {
+    itemsCountPerPage: 10,
+    pageRangeDisplayed: 5,
+    activePage: 1,
+    prevPageText: "⟨",
+    firstPageText: "«",
+    nextPageText: "⟩",
+    lastPageText: "»",
+    innerClass: "pagination",
+    itemClass: undefined,
+    linkClass: undefined,
+    activeLinkClass: undefined,
+    hideFirstLastPages: false,
+    getPageUrl: (i) => "#"
+  };
+
+  isFirstPageVisible(has_previous_page) {
+    const { hideDisabled, hideNavigation, hideFirstLastPages } = this.props;
+    if (hideFirstLastPages || (hideDisabled && !has_previous_page)) return false;
+    return true;
+  }
+
+  isPrevPageVisible(has_previous_page) {
+    const { hideDisabled, hideNavigation } = this.props;
+    if (hideNavigation || (hideDisabled && !has_previous_page)) return false;
+    return true;
+  }
+
+  isNextPageVisible(has_next_page) {
+    const { hideDisabled, hideNavigation } = this.props;
+    if(hideNavigation || (hideDisabled && !has_next_page)) return false;
+    return true;
+  }
+
+  isLastPageVisible(has_next_page) {
+    const { hideDisabled, hideNavigation, hideFirstLastPages } = this.props;
+    if (hideFirstLastPages || (hideDisabled && !has_next_page)) return false;
+    return true;
+  }
+
+  buildPages() {
+    const pages = [];
+    const {
+      itemsCountPerPage,
+      pageRangeDisplayed,
+      activePage,
+      prevPageText,
+      nextPageText,
+      firstPageText,
+      lastPageText,
+      totalItemsCount,
+      onChange,
+      activeClass,
+      itemClass,
+      itemClassFirst,
+      itemClassPrev,
+      itemClassNext,
+      itemClassLast,
+      activeLinkClass,
+      disabledClass,
+      hideDisabled,
+      hideNavigation,
+      linkClass,
+      linkClassFirst,
+      linkClassPrev,
+      linkClassNext,
+      linkClassLast,
+      hideFirstLastPages,
+      getPageUrl
+    } = this.props;
+
+    const paginationInfo = new paginator(
+      itemsCountPerPage,
+      pageRangeDisplayed
+    ).build(totalItemsCount, activePage);
+
+    for (
+      let i = paginationInfo.first_page;
+      i <= paginationInfo.last_page;
+      i++
+    ) {
+      pages.push(
+        <Page
+          isActive={i === activePage}
+          key={i}
+          href={getPageUrl(i)}
+          pageNumber={i}
+          pageText={i + ""}
+          onClick={onChange}
+          itemClass={itemClass}
+          linkClass={linkClass}
+          activeClass={activeClass}
+          activeLinkClass={activeLinkClass}
+        />
+      );
+    }
+
+    this.isPrevPageVisible(paginationInfo.has_previous_page) &&
+      pages.unshift(
+        <Page
+          key={"prev" + paginationInfo.previous_page}
+          href={getPageUrl(paginationInfo.previous_page)}
+          pageNumber={paginationInfo.previous_page}
+          onClick={onChange}
+          pageText={prevPageText}
+          isDisabled={!paginationInfo.has_previous_page}
+          itemClass={cx(itemClass, itemClassPrev)}
+          linkClass={cx(linkClass, linkClassPrev)}
+          disabledClass={disabledClass}
+        />
+      );
+
+    this.isFirstPageVisible(paginationInfo.has_previous_page) &&
+      pages.unshift(
+        <Page
+          key={"first"}
+          href={getPageUrl(1)}
+          pageNumber={1}
+          onClick={onChange}
+          pageText={firstPageText}
+          isDisabled={!paginationInfo.has_previous_page}
+          itemClass={cx(itemClass, itemClassFirst)}
+          linkClass={cx(linkClass, linkClassFirst)}
+          disabledClass={disabledClass}
+        />
+      );
+
+    this.isNextPageVisible(paginationInfo.has_next_page) &&
+      pages.push(
+        <Page
+          key={"next" + paginationInfo.next_page}
+          href={getPageUrl(paginationInfo.next_page)}
+          pageNumber={paginationInfo.next_page}
+          onClick={onChange}
+          pageText={nextPageText}
+          isDisabled={!paginationInfo.has_next_page}
+          itemClass={cx(itemClass, itemClassNext)}
+          linkClass={cx(linkClass, linkClassNext)}
+          disabledClass={disabledClass}
+        />
+      );
+
+    this.isLastPageVisible(paginationInfo.has_next_page) &&
+      pages.push(
+        <Page
+          key={"last"}
+          href={getPageUrl(paginationInfo.total_pages)}
+          pageNumber={paginationInfo.total_pages}
+          onClick={onChange}
+          pageText={lastPageText}
+          isDisabled={
+            paginationInfo.current_page === paginationInfo.total_pages
+          }
+          itemClass={cx(itemClass, itemClassLast)}
+          linkClass={cx(linkClass, linkClassLast)}
+          disabledClass={disabledClass}
+        />
+      );
+
+    return pages;
+  }
+
+  render() {
+    const pages = this.buildPages();
+    return <ul className={this.props.innerClass}>{pages}</ul>;
+  }
 }
-
-const defaultProps = {
-    initialPage: 1,
-    pageSize: 10
-}
-
-class Pagination extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { pager: {} };
-    }
-
-    componentWillMount() {
-        // set page if items array isn't empty
-        if (this.props.items && this.props.items.length) {
-            this.setPage(this.props.initialPage);
-        }
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        // reset page if items array has changed
-        if (this.props.items !== prevProps.items) {
-            this.setPage(this.props.initialPage);
-        }
-    }
-
-    setPage(page) {
-        var { items, pageSize } = this.props;
-        var pager = this.state.pager;
-
-        if (page < 1 || page > pager.totalPages) {
-            return;
-        }
-
-        // get new pager object for specified page
-        pager = this.getPager(items.length, page, pageSize);
-
-        // get new page of items from items array
-        var pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
-
-        // update state
-        this.setState({ pager: pager });
-
-        // call change page function in parent component
-        this.props.onChangePage(pageOfItems);
-    }
-
-    getPager(totalItems, currentPage, pageSize) {
-        // default to first page
-        currentPage = currentPage || 1;
-
-        // default page size is 10
-        pageSize = pageSize || 10;
-
-        // calculate total pages
-        var totalPages = Math.ceil(totalItems / pageSize);
-
-        var startPage, endPage;
-        if (totalPages <= 10) {
-            // less than 10 total pages so show all
-            startPage = 1;
-            endPage = totalPages;
-        } else {
-            // more than 10 total pages so calculate start and end pages
-            if (currentPage <= 6) {
-                startPage = 1;
-                endPage = 10;
-            } else if (currentPage + 4 >= totalPages) {
-                startPage = totalPages - 9;
-                endPage = totalPages;
-            } else {
-                startPage = currentPage - 5;
-                endPage = currentPage + 4;
-            }
-        }
-
-        // calculate start and end item indexes
-        var startIndex = (currentPage - 1) * pageSize;
-        var endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
-
-        // create an array of pages to ng-repeat in the pager control
-        var pages = [...Array((endPage + 1) - startPage).keys()].map(i => startPage + i);
-
-        // return object with all pager properties required by the view
-        return {
-            totalItems: totalItems,
-            currentPage: currentPage,
-            pageSize: pageSize,
-            totalPages: totalPages,
-            startPage: startPage,
-            endPage: endPage,
-            startIndex: startIndex,
-            endIndex: endIndex,
-            pages: pages
-        };
-    }
-
-    render() {
-        var pager = this.state.pager;
-
-        if (!pager.pages || pager.pages.length <= 1) {
-            // don't display pager if there is only 1 page
-            return null;
-        }
-
-        return (
-            <ul className="pagination">
-                <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(1)}>First</a>
-                </li>
-                <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(pager.currentPage - 1)}>Previous</a>
-                </li>
-                {pager.pages.map((page, index) =>
-                    <li key={index} className={pager.currentPage === page ? 'active' : ''}>
-                        <a onClick={() => this.setPage(page)}>{page}</a>
-                    </li>
-                )}
-                <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(pager.currentPage + 1)}>Next</a>
-                </li>
-                <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(pager.totalPages)}>Last</a>
-                </li>
-            </ul>
-        );
-    }
-}
-
-Pagination.propTypes = propTypes;
-Pagination.defaultProps = defaultProps;
-export default Pagination;
