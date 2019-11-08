@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.3.1",
-    "bootstrap-less": "^3.3.8",
+    "bootstrap": "^3.3.5",
     "classnames": "^2.2.6",
     "fusioncharts": "^3.14.1",
     "paginator": "^1.0.0",
