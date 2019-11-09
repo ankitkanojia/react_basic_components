@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "./../Components/TreeView/TreeView.css"
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
     render() {
@@ -9,25 +10,20 @@ class Home extends Component {
                 <div class="row">
                     <div class="col-md-3">
                         <div>
-                            <h3 class="text-danger">API Repository</h3>
+                            <h3 class="text-danger">COMPONENTS</h3>
                             <ul class="tree">
-                                <li>
-                                    Login API
-                    <ul>
-                                        <li><a href="true">Link</a></li>
-                                        <li><a href="true">Link</a></li>
-                                        <li><a href="true">Link</a></li>
-                                        <li><a href="true">Link</a></li>
-                                    </ul>
-                                </li>
+                                <li><Link to="/imageverification">Imge Verification</Link></li>
+                                <li><Link to="/scrollbar">ScrollBar</Link></li>
+                                <li><Link to="/charts">Charts</Link></li>
+                                <li><Link to="/pagination">Pagiation</Link></li>
                             </ul>
                         </div>
                     </div>
-                    </div>
+                </div>
 
             </React.Fragment>
-                )
-            }
-        }
-        
+        )
+    }
+}
+
 export default Home;
