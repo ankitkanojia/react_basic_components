@@ -27,10 +27,10 @@ class Pagination extends React.Component {
           this.setState({ [evt.target.name]: evt.target.value });
         }
       
-        // handlePageChange = (pageNumber) => {
-        //   console.log(`active page is ${pageNumber}`);
-        //   this.setState({ activePage: pageNumber });
-        // }
+        handlePageChange = (pageNumber) => {
+          console.log(`active page is ${pageNumber}`);
+          this.setState({ activePage: pageNumber });
+        }
         
         render() {
       
@@ -189,6 +189,7 @@ class Pagination extends React.Component {
                               lastPageText={this.state.lastPageText ? this.state.lastPageText : "»" }
                               nextPageText={this.state.nextPageText ? this.state.nextPageText : "⟩" }
                               hideFirstLastPages={this.state.hideFirstLastPages ? this.state.hideFirstLastPages : false }
+                              onChange = {this.handlePageChange}
                             />
                           </div>
                         </div>
