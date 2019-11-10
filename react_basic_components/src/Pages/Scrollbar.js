@@ -19,6 +19,10 @@ class Scrollbar extends Component {
 
         return (
             <React.Fragment>
+                <div class="sidenav">
+                    <a href="#demo">Demo</a>
+                    <a href="#installation">Guide</a>
+                </div>
                 <div className="row mt-3">
                     <div className="col-md-6">
                         <ul style={{ height: 500 }}>

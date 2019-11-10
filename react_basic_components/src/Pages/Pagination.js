@@ -53,6 +53,10 @@ class Pagination extends React.Component {
       
           return (
             <React.Fragment>
+              <div class="sidenav">
+                    <a href="#demo">Demo</a>
+                    <a href="#installation">Guide</a>
+                </div>
               <div className="container">
                 <div className="row">
                   <div className="col-md-6">
