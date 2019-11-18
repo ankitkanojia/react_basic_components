@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { sunburst } from "react-syntax-highlighter/dist/styles";
-import { TablePagination  } from 'react-pagination-table';
-import './style.css';
+import TablePaginationSample  from './../Components/TablePagination/TablePagination';
 
 const data = [
     { size: ["L", "M"], phone: 1234567, gender: "Male", age: 20, name:"Ben" },
@@ -28,11 +27,11 @@ const data = [
 ];
 const Header = ["Name", "Age", "Size", "Phone", "Gender" ];
 
-class TablePaginationSample extends Component {
+class TablePagination extends Component {
     render() {
         return (
             <React.Fragment>
-                 <TablePagination
+                 <TablePaginationSample
                     title="TablePagination"
                     subTitle="Sub Title"
                     headers={ Header }
@@ -47,4 +46,4 @@ class TablePaginationSample extends Component {
     }
 }
 
-export default TablePaginationSample;
+export default TablePagination;
