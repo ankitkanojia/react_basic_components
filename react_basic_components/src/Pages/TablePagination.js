@@ -1,46 +1,60 @@
 import React, { Component } from 'react';
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { sunburst } from "react-syntax-highlighter/dist/styles";
-import TablePaginationSample  from './../Components/TablePagination/TablePagination';
+import './CustomPagination.css';
 
-const data = [
-    { size: ["L", "M"], phone: 1234567, gender: "Male", age: 20, name:"Ben" },
-    { size: ["L", "M", "XL"], phone: 1234567, gender: "Female", age: 22, name:"Ken" },
-    { size: ["L", "S"], phone: 1234567, gender: "Female", age: 23, name:"Jay" },
-    { size: ["M", "S"], phone: 1234567, gender: "Male", age: 26, name:"Chip" },
-    { size: ["XL", "XS"], phone: 1234567, gender: "Male", age: 23, name:"Lee" },
-    { size: ["L", "M", "S", "XS"], phone: 1234567, gender: "Female", age: 30, name:"Frank" },
-    { size: ["S", "L"], phone: 1234567, gender: "Male", age: 23, name:"CoCo" },
-    { size: ["L", "M", "S"], phone: 1234567, gender: "Female", age: 20, name:"Fake" },
-    { size: ["XS", "L"], phone: 1234567, gender: "Male", age: 26, name:"Dump" },
-    { size: ["L", "M", "S"], phone: 1234567, gender: "Female", age: 27, name:"Ocean" },
-    { size: ["S", "XL"], phone: 1234567, gender: "Male", age: 20, name:"Polo" },
-    { size: ["M", "XL"], phone: 1234567, gender: "Female", age: 21, name:"Queen" },
-    { size: ["L", "M"], phone: 1234567, gender: "Female", age: 20, name:"Bump" },
-    { size: ["L", "M", "S", "XL"], phone: 1234567, gender: "Male", age: 22, name:"Judy" },
-    { size: ["XL", "M"], phone: 1234567, gender: "Female", age: 24, name:"Ryan" },
-    { size: ["L", "S"], phone: 1234567, gender: "Female", age: 25, name:"Flow" },
-    { size: ["S", "M"], phone: 1234567, gender: "Female", age: 31, name:"Ray" },
-    { size: ["L", "M", "XS"], phone: 1234567, gender: "Male", age: 23, name:"Yen" },
-    { size: ["XL", "M", "S"], phone: 1234567, gender: "Male", age: 21, name:"Gray" },
-    { size: ["L", "M", "S"], phone: 1234567, gender: "Female", age: 22, name:"Tom" }
-];
-const Header = ["Name", "Age", "Size", "Phone", "Gender" ];
+const data = [{ "req_no": 1, "title": "test1" },
+{ "req_no": 2, "title": "test2" },
+{ "req_no": 3, "title": "test3" },
+{ "req_no": 4, "title": "test4" },
+{ "req_no": 5, "title": "test5" },
+{ "req_no": 6, "title": "test6" },
+{ "req_no": 7, "title": "test7" },
+{ "req_no": 8, "title": "test8" },
+{ "req_no": 9, "title": "test9" },
+{ "req_no": 10, "title": "test10" },
+{ "req_no": 11, "title": "test11" },
+{ "req_no": 12, "title": "test12" },
+{ "req_no": 13, "title": "test13" },
+{ "req_no": 14, "title": "test14" },
+{ "req_no": 15, "title": "test15" },
+{ "req_no": 16, "title": "test16" },
+{ "req_no": 17, "title": "test17" },
+{ "req_no": 18, "title": "test18" },
+{ "req_no": 19, "title": "test19" },
+{ "req_no": 20, "title": "test20" },
+{ "req_no": 21, "title": "test21" },
+{ "req_no": 22, "title": "test22" },
+{ "req_no": 23, "title": "test23" },
+{ "req_no": 24, "title": "test24" },
+{ "req_no": 25, "title": "test25" },
+{ "req_no": 26, "title": "test26" }];
 
 class TablePagination extends Component {
     render() {
         return (
             <React.Fragment>
-                 <TablePaginationSample
-                    title="TablePagination"
-                    subTitle="Sub Title"
-                    headers={ Header }
-                    data={ data }
-                    columns="name.age.size.phone.gender"
-                    perPageItemCount={ 5 }
-                    totalCount={ data.length }
-                    arrayOption={ [["size", 'all', ' ']] }
-                />
+                <div>
+                    <table id="request-table">
+                        <tr><th>Request No</th><th>Title</th></tr>
+                        {data.map((item,index) => {
+                           return <tr><td>{item.req_no}</td><td>{item.title}</td></tr>
+                        })}
+                    </table>
+                </div>
+
+                <div class="clearfix">
+                    <div class="box options">
+                        <label>Requests Per Page: </label>
+                        <select id="req_per_page" onchange="filter_requests()">
+                            <option>5</option>
+                            <option>10</option>
+                            <option>ALL</option>
+                        </select>
+                    </div>
+                    <div class="box pagination">
+                    </div>
+                </div>
             </React.Fragment>
         )
     }
