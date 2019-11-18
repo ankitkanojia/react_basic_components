@@ -31,14 +31,38 @@ const data = [{ "req_no": 1, "title": "test1" },
 { "req_no": 26, "title": "test26" }];
 
 class TablePagination extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            activePage: 1,
+            itemPerPage: 5,
+            itemCollection: []
+        };
+    }
+
+    componentDidMount() {
+        const updatedCollection = data.filter(m => m.req_no >= this.state.activePage && m.req_no <= (this.state.activePage * this.state.itemPerPage));
+        this.setState({
+            itemCollection: updatedCollection
+        });
+    }
+
+    PerPage = (e) => {
+        const updatedCollection = data.filter(m => m.req_no >= this.state.activePage && m.req_no <= (this.state.activePage * e.target.value));
+        this.setState({
+            itemCollection: e.target.value.toLowerCase() === "all" ? data : updatedCollection,
+            itemPerPage : e.target.value
+        });
+    }
+
     render() {
         return (
             <React.Fragment>
                 <div>
                     <table id="request-table">
                         <tr><th>Request No</th><th>Title</th></tr>
-                        {data.map((item,index) => {
-                           return <tr><td>{item.req_no}</td><td>{item.title}</td></tr>
+                        {this.state.itemCollection.map((item, index) => {
+                            return <tr><td>{item.req_no}</td><td>{item.title}</td></tr>
                         })}
                     </table>
                 </div>
@@ -46,7 +70,7 @@ class TablePagination extends Component {
                 <div class="clearfix">
                     <div class="box options">
                         <label>Requests Per Page: </label>
-                        <select id="req_per_page" onchange="filter_requests()">
+                        <select onChange={this.PerPage}>
                             <option>5</option>
                             <option>10</option>
                             <option>ALL</option>
