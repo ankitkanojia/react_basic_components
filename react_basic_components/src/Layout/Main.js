@@ -5,6 +5,7 @@ import ImageVerification from '../Pages/ImageVerification';
 import Scrollbar from '../Pages/Scrollbar';
 import Chart from '../Pages/Chart';
 import Pagination from '../Pages/Pagination';
+import TablePagination from '../Pages/TablePagination';
 
 const Main = () => (
         <Switch>
@@ -13,6 +14,7 @@ const Main = () => (
             <Route exact path='/scrollbar' component={Scrollbar}/>
             <Route exact path='/charts' component={Chart}/>
             <Route exact path='/pagination' component={Pagination}/>
+            <Route exact path='/tablepagination' component={TablePagination}/>
         </Switch>
 )
 

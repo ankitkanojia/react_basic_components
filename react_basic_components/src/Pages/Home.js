@@ -16,6 +16,7 @@ class Home extends Component {
                                 <li><Link to="/scrollbar">ScrollBar</Link></li>
                                 <li><Link to="/charts">Charts</Link></li>
                                 <li><Link to="/pagination">Pagiation</Link></li>
+                                <li><Link to="/tablepagination">TablePagination</Link></li>
                             </ul>
                         </div>
                     </div>
