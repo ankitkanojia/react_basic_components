@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { sunburst } from "react-syntax-highlighter/dist/styles";
 import { TablePagination  } from 'react-pagination-table';
+import './style.css';
 
 const data = [
     { size: ["L", "M"], phone: 1234567, gender: "Male", age: 20, name:"Ben" },
