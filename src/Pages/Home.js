@@ -12,11 +12,12 @@ class Home extends Component {
                         <div>
                             <h3 class="text-danger">COMPONENTS</h3>
                             <ul class="tree">
-                                <li><Link to="/imageverification">Imge Verification</Link></li>
+                                <li><Link to="/imageverification">Image Verification</Link></li>
                                 <li><Link to="/scrollbar">ScrollBar</Link></li>
                                 <li><Link to="/charts">Charts</Link></li>
                                 <li><Link to="/pagination">Pagiation</Link></li>
                                 <li><Link to="/tablepagination">TablePagination</Link></li>
+                                <li><Link to="/dragdrop">Drag-Drop</Link></li>
                             </ul>
                         </div>
                     </div>
