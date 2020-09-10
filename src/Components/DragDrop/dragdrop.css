@@ -1,0 +1,30 @@
+span.highlighted{
+    border: 2px dashed coral !important;
+  }
+  
+  span.droptarget {
+    position: absolute;
+    height: calc(100% - 20px);
+    width: calc(100% - 20px);
+    top: 10px;
+    left: 10px;
+  }
+  
+  .defaultLable{
+    font-size: 30px;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, -50%);
+  }
+  
+  .draggbleContainer{
+    height : 100%;
+    position: relative;
+    border: 1px solid black;
+  }
+  
+  .leftContainer{
+    background-color : lightyellow;
+    min-height : 500px
+  }
