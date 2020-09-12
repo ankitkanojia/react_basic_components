@@ -6,6 +6,7 @@ import Scrollbar from '../Pages/Scrollbar';
 import Chart from '../Pages/Chart';
 import Pagination from '../Pages/Pagination';
 import TablePagination from '../Pages/TablePagination';
+import DragDrop from '../Pages/DragDrop';
 
 const Main = () => (
         <Switch>
@@ -15,6 +16,7 @@ const Main = () => (
             <Route exact path='/charts' component={Chart}/>
             <Route exact path='/pagination' component={Pagination}/>
             <Route exact path='/tablepagination' component={TablePagination}/>
+            <Route exact path='/dragdrop' component={DragDrop}/>
         </Switch>
 )
 
