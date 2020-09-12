@@ -26,15 +26,31 @@ class DragDrop extends Component {
     }
 
     onDragStart = (index) => {
+        this.setState({
+            currentSelectedIndex : index,
+            isDragged : false
+        });
     };
 
     onDragEnd = () => {
+        let updatedDrggableImages = this.state.draggableImages;
+        updatedDrggableImages[this.state.currentSelectedIndex].isDragged = this.state.isDragged;
+        this.setState({
+            draggableImages : updatedDrggableImages,
+            isDragged : false
+        });    
     }
 
     onHit = () =>{
+        this.setState({
+            isDragged : true
+        });
     }
 
     onDragLeave = () => {
+        this.setState({
+            isDragged : false
+        });
     }
 
     render() {
