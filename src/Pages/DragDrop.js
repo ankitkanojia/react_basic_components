@@ -18,7 +18,7 @@ class DragDrop extends Component {
         const context = require.context('./../images', true, /.png$/);
         const imagesNameCollection = [];
         context.keys().forEach((data, key) => {
-            imagesNameCollection.push({ index : key, imageName : "puppy.png" , isDragged : false })
+            imagesNameCollection.push({ index : key, imageName : data.replace("./","") , isDragged : false })
         });   
         this.setState({
             draggableImages : imagesNameCollection
