@@ -41,18 +41,18 @@ class DragDrop extends Component {
         });    
     }
 
-    onHit = () =>{
-        this.setState({
-            isDragged : true
-        });
-    }
-
     onDragLeave = () => {
         this.setState({
             isDragged : false
         });
     }
 
+    onHit = () =>{
+        this.setState({
+            isDragged : true
+        });
+    }
+    
     render() {
         return (
             <div className="container">
