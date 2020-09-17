@@ -33,13 +33,7 @@ class DragDrop extends Component {
             isDragged : false
         });    
     }
-
-    onDragLeave = () => {
-        this.setState({
-            isDragged : false
-        });
-    }
-
+   
     onDragStart = (index) => {
         this.setState({
             currentSelectedIndex : index,
@@ -50,6 +44,12 @@ class DragDrop extends Component {
     onHit = () =>{
         this.setState({
             isDragged : true
+        });
+    }
+
+    onDragLeave = () => {
+        this.setState({
+            isDragged : false
         });
     }
 
