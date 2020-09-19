@@ -27,10 +27,6 @@ export default ImageVerification;`;
 
         return (
             <React.Fragment>
-                <div class="sidenav">
-                    <a href="#demo">Demo</a>
-                    <a href="#installation">Guide</a>
-                </div>
                 <div className="row p-3">
                     <div className="col-md-6">
                       <CustomImage width="200" src="logo.svg" className="img-thumbnail" alt="logo image" />
