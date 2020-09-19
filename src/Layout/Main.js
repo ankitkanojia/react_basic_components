@@ -6,11 +6,13 @@ import Scrollbar from '../Pages/Scrollbar';
 import Chart from '../Pages/Chart';
 import Pagination from '../Pages/Pagination';
 import TablePagination from '../Pages/TablePagination';
+import TreeView from '../Pages/TreeView';
 import DragDrop from '../Pages/DragDrop';
 
 const Main = () => (
         <Switch>
-            <Route exact path='/' component={Home}/>Scrollbar
+            <Route exact path='/' component={Home}/>
+            <Route exact path='/treeview' component={TreeView}/>
             <Route exact path='/imageverification' component={ImageVerification}/>
             <Route exact path='/scrollbar' component={Scrollbar}/>
             <Route exact path='/charts' component={Chart}/>
