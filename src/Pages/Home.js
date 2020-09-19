@@ -7,19 +7,30 @@ class Home extends Component {
         return (
             <React.Fragment>
                 <br />
-                <div class="row">
-                    <div class="col-md-3">
-                        <div>
-                            <h3 class="text-danger">COMPONENTS</h3>
-                            <ul class="tree">
-                                <li><Link to="/imageverification">Image Verification</Link></li>
-                                <li><Link to="/scrollbar">ScrollBar</Link></li>
-                                <li><Link to="/charts">Charts</Link></li>
-                                <li><Link to="/pagination">Pagiation</Link></li>
-                                <li><Link to="/tablepagination">TablePagination</Link></li>
-                                <li><Link to="/dragdrop">Drag-Drop</Link></li>
-                            </ul>
-                        </div>
+                <div className="row">
+                    <div className="col-md-3">
+                        <Link to="/treeview"><button style={{height : "100px", minWidth: "100px"}} className="btn btn-success">TreeView</button></Link>
+                    </div>
+                    <div className="col-md-3">
+                        <Link to="/imageverification"><button style={{height : "100px", minWidth: "100px"}}  className="btn btn-success">Image Verification</button></Link>
+                    </div>
+                    <div className="col-md-3">
+                        <Link to="/scrollbar"><button style={{height : "100px", minWidth: "100px"}}  className="btn btn-success">ScrollBar</button></Link>
+                    </div>
+                    <div className="col-md-3">
+                        <Link to="/charts"><button style={{height : "100px", minWidth: "100px"}}  className="btn btn-success">Charts</button></Link>
+                    </div>
+                </div>
+                <br />
+                <div className="row">
+                    <div className="col-md-3">
+                        <Link to="/pagination"><button style={{height : "100px", minWidth: "100px"}} className="btn btn-success">Pagiation</button></Link>
+                    </div>
+                    <div className="col-md-3">
+                        <Link to="/tablepagination"><button style={{height : "100px", minWidth: "100px"}} className="btn btn-success">TablePagination</button></Link>
+                    </div>
+                    <div className="col-md-3">
+                        <Link to="/dragdrop"><button style={{height : "100px", minWidth: "100px"}} className="btn btn-success">Drag-Drop</button></Link>
                     </div>
                 </div>
 
