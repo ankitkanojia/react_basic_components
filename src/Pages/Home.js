@@ -32,6 +32,9 @@ class Home extends Component {
                     <div className="col-md-3">
                         <Link to="/dragdrop"><button style={{height : "100px", minWidth: "100px"}} className="btn btn-success">Drag-Drop</button></Link>
                     </div>
+                    <div className="col-md-3">
+                        <Link to="/textchat"><button style={{height : "100px", minWidth: "100px"}} className="btn btn-success">Text-Chat</button></Link>
+                    </div>
                 </div>
 
             </React.Fragment>
