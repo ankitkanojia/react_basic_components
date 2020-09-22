@@ -8,6 +8,7 @@ import Pagination from '../Pages/Pagination';
 import TablePagination from '../Pages/TablePagination';
 import TreeView from '../Pages/TreeView';
 import DragDrop from '../Pages/DragDrop';
+import TextChat from '../Pages/TextChat';
 
 const Main = () => (
         <Switch>
@@ -19,6 +20,7 @@ const Main = () => (
             <Route exact path='/pagination' component={Pagination}/>
             <Route exact path='/tablepagination' component={TablePagination}/>
             <Route exact path='/dragdrop' component={DragDrop}/>
+            <Route exact path='/textchat' component={TextChat}/>
         </Switch>
 )
 
