@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
+    "firebase": "^7.22.1",
     "fusioncharts": "^3.14.1",
     "paginator": "^1.0.0",
     "prop-types": "^15.7.2",
@@ -17,7 +18,8 @@
     "react-pagination-table": "^2.0.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
-    "react-syntax-highlighter": "^5.7.0"
+    "react-syntax-highlighter": "^5.7.0",
+    "recompose": "^0.30.0"
   },
   "scripts": {
     "start": "react-scripts start",
