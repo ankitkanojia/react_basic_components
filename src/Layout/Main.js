@@ -9,6 +9,7 @@ import TablePagination from '../Pages/TablePagination';
 import TreeView from '../Pages/TreeView';
 import DragDrop from '../Pages/DragDrop';
 import TextChat from '../Pages/TextChat';
+import PushNotification from '../Pages/PushNotification';
 
 const Main = () => (
         <Switch>
@@ -21,6 +22,7 @@ const Main = () => (
             <Route exact path='/tablepagination' component={TablePagination}/>
             <Route exact path='/dragdrop' component={DragDrop}/>
             <Route exact path='/textchat' component={TextChat}/>
+            <Route exact path='/notification' component={PushNotification}/>
         </Switch>
 )
 
