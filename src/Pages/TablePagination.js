@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { sunburst } from "react-syntax-highlighter/dist/styles";
-import './CustomPagination.css';
+import './../Css/CustomPagination.css';
 
-const data = [{ "req_no": 1, "title": "test1" },
+const data = [
+{ "req_no": 1, "title": "test1" },
 { "req_no": 2, "title": "test2" },
 { "req_no": 3, "title": "test3" },
 { "req_no": 4, "title": "test4" },
