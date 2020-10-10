@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './../Css/TextChat.css';
+import './../Styles/TextChat.css';
 
 class TextChat extends Component {
     render() {
