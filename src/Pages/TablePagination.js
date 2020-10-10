@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './../Css/CustomPagination.css';
+import './../Styles/CustomPagination.css';
 
 const data = [
 { "req_no": 1, "title": "test1" },
