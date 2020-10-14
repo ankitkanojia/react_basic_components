@@ -33,6 +33,36 @@ class FirebaseAPIs extends Component {
       });
   }
 
+  addDetails = (Obj) => {
+    // Add document using delete option from firestore database
+    FireBaseContext().collection("Students")
+      .doc(obj.Id)
+      .set(obj)
+      .then(function () {
+        // Student details addedd in firebase database  
+        console.log('Student details successfully added!');
+      })
+      .catch(function (error) {
+        // Error or Exception occure
+        console.error("Error writing document: ", error);
+      });
+  }
+
+  updateDetails = (Obj) => {
+    // Add document using delete option from firestore database
+    FireBaseContext().collection("Students")
+      .doc()
+      .set(obj)
+      .then(function () {
+        // Student details addedd in firebase database  
+        console.log('Student details successfully added!');
+      })
+      .catch(function (error) {
+        // Error or Exception occure
+        console.error("Error writing document: ", error);
+      });
+  }
+
   render() {
     return (
       <React.Fragment>
