@@ -63,6 +63,21 @@ class FirebaseAPIs extends Component {
       });
   }
 
+  deleteDetails = (Obj) => {
+    // Delete document using delete option from firestore database
+    FireBaseContext().collection("Students")
+      .doc(Obj.Id)
+      .delete()
+      .then(function () {
+        // Student details deleted from firebase database  
+        console.log("Student details successfully deleted!");
+      }).catch(
+        function (error) {
+          // Error or Exception occure
+          console.error("Error removing document: ", error);
+        });
+  }
+
   render() {
     return (
       <React.Fragment>
