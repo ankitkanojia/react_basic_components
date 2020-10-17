@@ -22,35 +22,7 @@ class Pagination extends React.Component {
           this.handleChange = this.handleChange.bind(this);
         }
       
-      
-        handleChange(evt) {
-          this.setState({ [evt.target.name]: evt.target.value });
-        }
-      
-        handlePageChange = (pageNumber) => {
-          console.log(`active page is ${pageNumber}`);
-          this.setState({ activePage: pageNumber });
-        }
-        
         render() {
-      
-          const defaultSnippet = `render() {
-          return (
-            <Pagination
-              activePage = {` + this.state.activePage + `}
-              itemsCountPerPage = {` + this.state.itemsCountPerPage + `}
-              totalItemsCount = {` + this.state.totalItemsCount + `}
-              pageRangeDisplayed = {` + this.state.pageRangeDisplayed + `}
-              prevPageText = {"` + this.state.prevPageText + `"}
-              firstPageText = {"` + this.state.firstPageText + `"}
-              lastPageText = {"` + this.state.lastPageText + `"}
-              nextPageText = {"` + this.state.nextPageText + `"}
-              hideFirstLastPages = {` + this.state.hideFirstLastPages + `}
-              onChange = {this.handlePageChange} //YOUR PAGE CHANGE EVENT
-            />
-          );
-        }`;
-      
           return (
             <React.Fragment>
               <div className="container">
