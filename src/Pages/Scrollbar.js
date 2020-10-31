@@ -5,6 +5,18 @@ import { sunburst } from "react-syntax-highlighter/dist/styles";
 
 class Scrollbar extends Component {
     render() {
+        const defaultSnippet = `render() {
+            return (
+                        <ul style={{ height: 500 }}>
+                            <CustomScrollbars>
+                                {[...Array(50)].map((data, index) => {
+                                    return <li>Link {index}</li>
+                                })}
+                            </CustomScrollbars>
+                        </ul>
+                    );
+        }`;
+
         return (
             <React.Fragment>
                 <div className="row mt-3">
