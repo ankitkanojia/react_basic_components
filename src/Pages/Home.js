@@ -27,15 +27,14 @@ class Home extends Component {
                         <Link to="/pagination"><button style={{ height: "100px", minWidth: "100px" }} className="btn btn-success">Pagiation</button></Link>
                     </div>
                     <div className="col-md-3">
+                        <Link to="/textchat"><button style={{ height: "100px", minWidth: "100px" }} className="btn btn-success">Text-Chat</button></Link>
+                    </div>
+                    <div className="col-md-3">
                         <Link to="/tablepagination"><button style={{ height: "100px", minWidth: "100px" }} className="btn btn-success">TablePagination</button></Link>
                     </div>
                     <div className="col-md-3">
                         <Link to="/dragdrop"><button style={{ height: "100px", minWidth: "100px" }} className="btn btn-success">Drag-Drop</button></Link>
                     </div>
-                    <div className="col-md-3">
-                        <Link to="/textchat"><button style={{ height: "100px", minWidth: "100px" }} className="btn btn-success">Text-Chat</button></Link>
-                    </div>
-
                 </div>
                 <br />
                 <div className="row">
