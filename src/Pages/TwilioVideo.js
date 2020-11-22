@@ -54,6 +54,73 @@ class VideoChat extends Component {
     });
   }
 
+  joinRoom() {
+    if (!this.state.roomName.trim()) {
+      this.setState({ roomNameErr: true });
+      return;
+    }
+
+    console.log("Joining room '" + this.state.roomName + "'...");
+    let connectOptions = {
+      name: this.state.roomName
+    };
+
+    if (this.state.previewTracks) {
+      connectOptions.tracks = this.state.previewTracks;
+    }
+
+    // Join the Room with the token from the server and the
+    // LocalParticipant's Tracks.
+    Video.connect(this.state.jwt, connectOptions).then(this.roomJoined, error => {
+      ToastsStore.error('Please verify your connection of webcam!');
+      ToastsStore.error('Webcam-Video permission should not block!');
+    });
+  }
+
+  attachTracks(tracks, container) {
+    tracks.forEach(track => {
+      container.appendChild(track.attach());
+    });
+  }
+
+  // Attaches a track to a specified DOM container
+  attachParticipantTracks(participant, container) {
+    var tracks = Array.from(participant.tracks.values());
+    this.attachTracks(tracks, container);
+  }
+
+  detachTracks(tracks) {
+    tracks.forEach(track => {
+      track.detach().forEach(detachedElement => {
+        detachedElement.remove();
+      });
+    });
+  }
+
+  detachParticipantTracks(participant) {
+    var tracks = Array.from(participant.tracks.values());
+    this.detachTracks(tracks);
+  }
+
+  roomJoined(room) {
+    // Called when a participant joins a room
+    console.log("Joined as '" + this.state.identity + "'");
+    this.setState({
+      activeRoom: room,
+      localMediaAvailable: true,
+      hasJoinedRoom: true
+    });
+
+    // Attach LocalParticipant's Tracks, if not already attached.
+    var previewContainer = this.refs.groupChat_localMedia;
+    console.log('previewContainer.querySelector(video)', previewContainer.querySelector('.video'));
+
+    if (!previewContainer.querySelector('.video')) {
+      this.attachParticipantTracks(room.localParticipant, this.refs.groupChat_localMedia);
+    }
+  }
+
+
   render() {
 
     /* Hide 'Join Room' button if user has already joined a room */
