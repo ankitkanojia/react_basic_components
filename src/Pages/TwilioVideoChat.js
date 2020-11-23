@@ -49,6 +49,7 @@ class VideoChat extends Component {
             ToastsStore.error("Issue to fetch token!");
           } else {
             this.setState({ userName: currentUserName });
+            this.joinRoom();
           }
         });
     });
@@ -118,6 +119,63 @@ class VideoChat extends Component {
     if (!previewContainer.querySelector('.video')) {
       this.attachParticipantTracks(room.localParticipant, this.refs.groupChat_localMedia);
     }
+
+    // Attach the Tracks of the Room's Participants.
+    room.participants.forEach(participant => {
+      console.log("Already in Room: '" + participant.identity + "'");
+      this.setState({
+        peerIdentity: participant.identity
+      })
+      var previewContainer = this.refs.remoteMedia;
+      this.attachParticipantTracks(participant, previewContainer);
+    });
+
+    // When a Participant joins the Room, log the event.
+    room.on('participantConnected', participant => {
+      console.log("Joining: '" + participant.identity + "'");
+      this.setState({
+        peerIdentity: participant.identity,
+        partnerConnected: true
+      })
+    });
+
+    // When a Participant adds a Track, attach it to the DOM.
+    room.on('trackAdded', (track, participant) => {
+      console.log(participant.identity + ' added track: ' + track.kind);
+      var previewContainer = this.refs.remoteMedia;
+      this.attachTracks([track], previewContainer);
+    });
+
+    // When a Participant removes a Track, detach it from the DOM.
+    room.on('trackRemoved', (track, participant) => {
+      console.log(participant.identity + ' removed track: ' + track.kind);
+      this.detachTracks([track]);
+    });
+
+    // When a Participant leaves the Room, detach its Tracks.
+    room.on('participantDisconnected', participant => {
+      console.log("Participant '" + participant.identity + "' left the room");
+      this.detachParticipantTracks(participant);
+    });
+
+    // Once the LocalParticipant leaves the room, detach the Tracks
+    // of all Participants, including that of the LocalParticipant.
+    room.on('disconnected', () => {
+      if (this.state.previewTracks) {
+        this.state.previewTracks.forEach(track => {
+          track.stop();
+        });
+      }
+      this.detachParticipantTracks(room.localParticipant);
+      room.participants.forEach(this.detachParticipantTracks);
+      this.state.activeRoom = null;
+      this.setState({ hasJoinedRoom: false, localMediaAvailable: false });
+    });
+  }
+
+  leaveRoom() {
+    this.state.activeRoom.disconnect();
+    this.setState({ hasJoinedRoom: false, localMediaAvailable: false, peerIdentity: '' });
   }
 
 
