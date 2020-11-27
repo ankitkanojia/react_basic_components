@@ -113,6 +113,21 @@ class TwilioTextChat extends Component {
     })
   }
 
+  handleEnter = (e) => {
+    if(e.key === "Enter" || e.keyCode === 13)
+    {
+      this.handleNewMessage();
+    }
+  }
+
+  handleNewMessage = () => {
+    const message = this.refs["txtmsg"].value;
+    if (message && message.length > 0 && this.state.channel) {
+      this.state.channel.sendMessage(message);
+      this.refs["txtmsg"].value = "";
+    }
+  }
+
   render() {
     return (
       <div className="wrap">
