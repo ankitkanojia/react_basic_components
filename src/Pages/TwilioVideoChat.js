@@ -84,6 +84,25 @@ class VideoChat extends Component {
     });
   }
 
+  // Attaches a track to a specified DOM container
+  attachParticipantTracks(participant, container) {
+    var tracks = Array.from(participant.tracks.values());
+    this.attachTracks(tracks, container);
+  }
+
+  detachTracks(tracks) {
+    tracks.forEach(track => {
+      track.detach().forEach(detachedElement => {
+        detachedElement.remove();
+      });
+    });
+  }
+
+  detachParticipantTracks(participant) {
+    var tracks = Array.from(participant.tracks.values());
+    this.detachTracks(tracks);
+  }
+
   roomJoined(room) {
     // Called when a participant joins a room
     console.log("Joined as '" + this.state.identity + "'");
@@ -153,6 +172,12 @@ class VideoChat extends Component {
       this.setState({ hasJoinedRoom: false, localMediaAvailable: false });
     });
   }
+
+  leaveRoom() {
+    this.state.activeRoom.disconnect();
+    this.setState({ hasJoinedRoom: false, localMediaAvailable: false, peerIdentity: '' });
+  }
+
 
   render() {
 
