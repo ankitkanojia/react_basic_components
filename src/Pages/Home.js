@@ -44,6 +44,9 @@ class Home extends Component {
                     <div className="col-md-3">
                         <Link to="/notification"><button style={{ height: "100px", minWidth: "100px" }} className="btn btn-success">Twilio Video Chat</button></Link>
                     </div>
+                    <div className="col-md-3">
+                        <Link to="/draggable"><button style={{ height: "100px", minWidth: "100px" }} className="btn btn-success">React Draggable</button></Link>
+                    </div>
                 </div>
 
             </React.Fragment>
