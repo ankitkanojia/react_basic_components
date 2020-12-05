@@ -63,38 +63,15 @@ class Draggable extends Component {
                     <div className="col-sm-6 leftContainer">
                         <div className="row p-2 draggbleContainer">
                             <label className="defaultLable">Drag Me here!</label>
-                            <DropTarget
-                                onDragEnter={() => (console.log('onDragEnter'))}
-                                onDragLeave={this.onDragLeave}
-                                onHit={this.onHit}
-                                targetKey="simple">
-                            </DropTarget>
-                            {this.state.draggableImages.map((data, key) => {
-                                if (data.isDragged) {
-                                    return <DragDropContainer key={key}
-                                        onDragStart={() => this.onDragStart(data.index)}
-                                        onDrag={() => (console.log('dragging'))}
-                                        onDragEnd={this.onDragEnd}
-                                        targetKey="simple"
-                                        className="col-sm-2">
-                                        <img width="78px" src={require("./../images/" + data.imageName)} />
-                                    </DragDropContainer>
-                                }
-                            })}
                         </div>
                     </div>
                     <div className="col-sm-6" style={{ backgroundColor: 'lightgray', minHeight: "500px", border: "1px solid black" }}>
                         <div className="row p-2">
                             {this.state.draggableImages.map((data, key) => {
                                 if (!data.isDragged) {
-                                    return <DragDropContainer key={key}
-                                        onDragStart={() => this.onDragStart(data.index)}
-                                        onDrag={() => (console.log('dragging'))}
-                                        onDragEnd={this.onDragEnd}
-                                        targetKey="simple"
-                                        className="col-sm-2">
+                                    return <div className="col-sm-2">
                                         <img width="78px" src={require("./../images/" + data.imageName)} />
-                                    </DragDropContainer>
+                                    </div>
                                 }
                             })}
                         </div>
