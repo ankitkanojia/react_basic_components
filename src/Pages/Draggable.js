@@ -38,9 +38,10 @@ class Draggable extends Component {
                         <div className="row p-2">
                             {this.state.draggableImages.map((data, key) => {
                                 if (!data.isDragged) {
-                                    return <div className="col-sm-2">
+                                    return <DraggableObject><div className="col-sm-2">
                                         <img width="78px" src={require("./../images/" + data.imageName)} />
                                     </div>
+                                    </DraggableObject>
                                 }
                             })}
                         </div>
