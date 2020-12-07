@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import DragDropContainer from './../Components/DragDrop/DragDropContainer';
-import DropTarget from './../Components/DragDrop/DropTarget';
 import './../Components/DragDrop/dragdrop.css';
+import DraggableObject from "react-draggable";
 
 class Draggable extends Component {
 
     constructor(props) {
         super(props);
         this.state =  {
-            draggableImages : [],
-            currentSelectedIndex : 0,
-            isDragged : false
+            draggableImages : []
         }
     }
 
@@ -22,34 +19,6 @@ class Draggable extends Component {
         });   
         this.setState({
             draggableImages : imagesNameCollection
-        });
-    }
-
-    onDragStart = (index) => {
-        this.setState({
-            currentSelectedIndex : index,
-            isDragged : false
-        });
-    };
-
-    onDragEnd = () => {
-        let updatedDrggableImages = this.state.draggableImages;
-        updatedDrggableImages[this.state.currentSelectedIndex].isDragged = this.state.isDragged;
-        this.setState({
-            draggableImages : updatedDrggableImages,
-            isDragged : false
-        });    
-    }
-
-    onDragLeave = () => {
-        this.setState({
-            isDragged : false
-        });
-    }
-
-    onHit = () =>{
-        this.setState({
-            isDragged : true
         });
     }
 

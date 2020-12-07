@@ -17,7 +17,7 @@ function bodyParameter(token) {
 };
 
 const PushNotification = ({ token }) => (
-  <>
+  <React.Fragment>
     <h1>React + Firebase Cloud Messaging (Push Notifications)</h1>
     <div>
       API/Server key: <p>{serverkey}</p>
@@ -35,7 +35,7 @@ const PushNotification = ({ token }) => (
         <li><b>Body Parameter:</b><br /><b></b><div><pre>{JSON.stringify(bodyParameter(token), null, 2) }</pre></div></li>
       </ul>
     </div>
-  </>
+  </React.Fragment>
 );
 
 export default compose(
