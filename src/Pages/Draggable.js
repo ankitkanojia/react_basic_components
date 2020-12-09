@@ -33,14 +33,17 @@ class Draggable extends Component {
         }
     };
 
-    handleStop = (e) => {
+    handleStop = (e, index) => {
         let currentObj = ReactDOM.findDOMNode(this.refs["droppableContainer"]).getBoundingClientRect();
         if ((currentObj.left < e.x && e.x < currentObj.left + currentObj.width) &&
             ((currentObj.top - 3) < e.y && e.y < currentObj.top + currentObj.height)) {
-            this.refs["droppableContainer"].classList.add("activeWindow");
-        }else{
-            this.refs["droppableContainer"].classList.remove("activeWindow");
+            var draggedObject = this.state.draggableImages;
+            draggedObject[index].isDragged = true;
+            this.setState({
+                draggableImages : draggedObject    
+            });
         }
+        this.refs["droppableContainer"].classList.remove("activeWindow");
     };
 
     render() {
@@ -60,9 +63,9 @@ class Draggable extends Component {
                             {this.state.draggableImages.map((data, key) => {
                                 if (!data.isDragged) {
                                     return <DraggableObject
-                                    onStart={this.handleStart}
                                     key={key}
                                     onDrag={(e) => this.handleDrag(e)}
+                                    onStop={(e) => this.handleStop(e, key)}
                                     position={{ x: 0, y: 0 }}
                                     ><div className="col-sm-2">
                                         <img width="78px" src={require("./../images/" + data.imageName)} />
