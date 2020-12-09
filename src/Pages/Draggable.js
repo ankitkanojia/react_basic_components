@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './../Components/DragDrop/dragdrop.css';
 import DraggableObject from "react-draggable";
+import * as ReactDOM from 'react-dom';
 
 class Draggable extends Component {
 
@@ -22,6 +23,26 @@ class Draggable extends Component {
         });
     }
 
+    handleDrag = (e) => {
+        let currentObj = ReactDOM.findDOMNode(this.refs["droppableContainer"]).getBoundingClientRect();
+        if ((currentObj.left < e.x && e.x < currentObj.left + currentObj.width) &&
+            ((currentObj.top - 3) < e.y && e.y < currentObj.top + currentObj.height)) {
+            this.refs["droppableContainer"].classList.add("activeWindow");
+        }else{
+            this.refs["droppableContainer"].classList.remove("activeWindow");
+        }
+    };
+
+    handleStop = (e) => {
+        let currentObj = ReactDOM.findDOMNode(this.refs["droppableContainer"]).getBoundingClientRect();
+        if ((currentObj.left < e.x && e.x < currentObj.left + currentObj.width) &&
+            ((currentObj.top - 3) < e.y && e.y < currentObj.top + currentObj.height)) {
+            this.refs["droppableContainer"].classList.add("activeWindow");
+        }else{
+            this.refs["droppableContainer"].classList.remove("activeWindow");
+        }
+    };
+
     render() {
         return (
             <div className="container">
@@ -30,7 +51,7 @@ class Draggable extends Component {
                         <h3>Draggable / Droppable Example</h3><br />
                     </div>
                     <div className="col-sm-6 leftContainer">
-                        <div className="row p-2 draggbleContainer">
+                        <div className="row p-2 draggbleContainer"  ref={"droppableContainer"}>
                             <label className="defaultLable">Drag Me here!</label>
                         </div>
                     </div>
@@ -38,7 +59,12 @@ class Draggable extends Component {
                         <div className="row p-2">
                             {this.state.draggableImages.map((data, key) => {
                                 if (!data.isDragged) {
-                                    return <DraggableObject><div className="col-sm-2">
+                                    return <DraggableObject
+                                    onStart={this.handleStart}
+                                    key={key}
+                                    onDrag={(e) => this.handleDrag(e)}
+                                    position={{ x: 0, y: 0 }}
+                                    ><div className="col-sm-2">
                                         <img width="78px" src={require("./../images/" + data.imageName)} />
                                     </div>
                                     </DraggableObject>
