@@ -7,19 +7,19 @@ class Draggable extends Component {
 
     constructor(props) {
         super(props);
-        this.state =  {
-            draggableImages : []
+        this.state = {
+            draggableImages: []
         }
     }
 
-    componentDidMount (){
+    componentDidMount() {
         const context = require.context('./../images', true, /.png$/);
         const imagesNameCollection = [];
         context.keys().forEach((data, key) => {
-            imagesNameCollection.push({ index : key, imageName : data.replace("./","") , isDragged : false })
-        });   
+            imagesNameCollection.push({ index: key, imageName: data.replace("./", ""), isDragged: false })
+        });
         this.setState({
-            draggableImages : imagesNameCollection
+            draggableImages: imagesNameCollection
         });
     }
 
@@ -28,7 +28,7 @@ class Draggable extends Component {
         if ((currentObj.left < e.x && e.x < currentObj.left + currentObj.width) &&
             ((currentObj.top - 3) < e.y && e.y < currentObj.top + currentObj.height)) {
             this.refs["droppableContainer"].classList.add("activeWindow");
-        }else{
+        } else {
             this.refs["droppableContainer"].classList.remove("activeWindow");
         }
     };
@@ -40,7 +40,7 @@ class Draggable extends Component {
             var draggedObject = this.state.draggableImages;
             draggedObject[index].isDragged = true;
             this.setState({
-                draggableImages : draggedObject    
+                draggableImages: draggedObject
             });
         }
         this.refs["droppableContainer"].classList.remove("activeWindow");
@@ -54,7 +54,20 @@ class Draggable extends Component {
                         <h3>Draggable / Droppable Example</h3><br />
                     </div>
                     <div className="col-sm-6 leftContainer">
-                        <div className="row p-2 draggbleContainer"  ref={"droppableContainer"}>
+                        <div className="row p-2 draggbleContainer" ref={"droppableContainer"}>
+                            {this.state.draggableImages.map((data, key) => {
+                                if (data.isDragged) {
+                                    return <DraggableObject
+                                        key={key}
+                                        onDrag={(e) => this.handleDrag(e)}
+                                        onStop={(e) => this.handleStop(e, key)}
+                                        position={{ x: 0, y: 0 }}
+                                    ><div className="col-sm-2">
+                                            <img width="78px" src={require("./../images/" + data.imageName)} />
+                                        </div>
+                                    </DraggableObject>
+                                }
+                            })}
                             <label className="defaultLable">Drag Me here!</label>
                         </div>
                     </div>
@@ -63,13 +76,13 @@ class Draggable extends Component {
                             {this.state.draggableImages.map((data, key) => {
                                 if (!data.isDragged) {
                                     return <DraggableObject
-                                    key={key}
-                                    onDrag={(e) => this.handleDrag(e)}
-                                    onStop={(e) => this.handleStop(e, key)}
-                                    position={{ x: 0, y: 0 }}
+                                        key={key}
+                                        onDrag={(e) => this.handleDrag(e)}
+                                        onStop={(e) => this.handleStop(e, key)}
+                                        position={{ x: 0, y: 0 }}
                                     ><div className="col-sm-2">
-                                        <img width="78px" src={require("./../images/" + data.imageName)} />
-                                    </div>
+                                            <img width="78px" src={require("./../images/" + data.imageName)} />
+                                        </div>
                                     </DraggableObject>
                                 }
                             })}
