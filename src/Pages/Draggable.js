@@ -51,7 +51,7 @@ class Draggable extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-sm-12 text-center">
-                        <h3>Draggable / Droppable Example</h3><br />
+                        <h3>Which are the fruits from the list?</h3><br />
                     </div>
                     <div className="col-sm-6 leftContainer">
                         <div className="row p-2 draggbleContainer" ref={"droppableContainer"}>
@@ -68,7 +68,7 @@ class Draggable extends Component {
                                     </DraggableObject>
                                 }
                             })}
-                            <label className="defaultLable">Drag Me here!</label>
+                            <label className="defaultLable">Drag Fruits Here!</label>
                         </div>
                     </div>
                     <div className="col-sm-6" style={{ backgroundColor: 'lightgray', minHeight: "500px", border: "1px solid black" }}>
@@ -87,6 +87,9 @@ class Draggable extends Component {
                                 }
                             })}
                         </div>
+                    </div>
+                    <div className="col-md-12 text-center mt-3">
+                        <button style={{padding: "5px", backgroundColor:"green" , color:"white", borderRadius:"10px", width:"200px", fontSize:"25px"}}>Submit</button>
                     </div>
                 </div>
             </div>)
