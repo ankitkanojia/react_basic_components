@@ -8,7 +8,8 @@ class Draggable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            draggableImages: []
+            draggableImages: [], 
+            fruits: ["banana.png", "orange.png"]
         }
     }
 
@@ -45,6 +46,21 @@ class Draggable extends Component {
         }
         this.refs["droppableContainer"].classList.remove("activeWindow");
     };
+
+    verifyAnswer = () => {
+        var collection = this.state.draggableImages;
+        collection.map((data,key) => {
+            if(data.isDragged)
+            {
+                if(this.state.fruits.indexOf(data.imageName) === -1){
+                    data.isDragged = false;
+                }
+            }
+        });
+        this.setState({
+            draggableImages : collection
+        });
+    }
 
     render() {
         return (
@@ -89,7 +105,7 @@ class Draggable extends Component {
                         </div>
                     </div>
                     <div className="col-md-12 text-center mt-3">
-                        <button style={{padding: "5px", backgroundColor:"green" , color:"white", borderRadius:"10px", width:"200px", fontSize:"25px"}}>Submit</button>
+                        <button onClick={this.verifyAnswer} style={{padding: "5px", backgroundColor:"green" , color:"white", borderRadius:"10px", width:"200px", fontSize:"25px"}}>Submit</button>
                     </div>
                 </div>
             </div>)
